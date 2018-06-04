@@ -1,0 +1,18 @@
+/persistency/gdml/read detector.gdml 
+/ldmx/plugins/load DisablePhotoNuclear libSimPlugins.so
+
+/run/initialize
+
+/ldmx/generators/beamspot/enable
+/ldmx/generators/beamspot/sizeX 15.0
+/ldmx/generators/beamspot/sizeY 35.0
+
+/ldmx/generators/mpgun/enable
+#/ldmx/generators/mpgun/enablePoisson
+/ldmx/generators/mpgun/nInteractions 1
+/ldmx/generators/mpgun/pdgID 11
+/ldmx/generators/mpgun/vertex -27.9260 5 -700 mm
+/ldmx/generators/mpgun/momentum 0.31384 0 3.98766 GeV
+
+/random/setSeeds 7339928 35193254
+/run/beamOn 10

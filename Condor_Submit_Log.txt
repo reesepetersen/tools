@@ -1,0 +1,220 @@
+Pileup electrons: 1
+Using v3 geometry
+lhe file = /home/pet00831/Projects/LDMX/SignalMC/8GeV/SLAC.8GeV.W.mchi.0.025.map.0.075.alpha0.1.scalarDM_unweighted_events.lhe
+Doing 1000 events per job.
+Number of jobs: 1000
+Electron beam energy: 8000 MeV
+smearBeam: on
+Beam size: 15 by 35
+Photonuclear and Electronuclear processes enabled.
+Submitting at low priority (nice).
+Gamma -> mu mu process enabled in ldmx-sw/SimApplication/src/GammaPhysics.cxx
+Total number of events: 1M
+Output: /local/cms/user/pet00831/LDMX/simulation/1s_75MeV_1b_8GeV_v3_1M_events_smearBeam_inclusive_withGammaMumu_2018_5_23
+Submission setup completed.Job(s) submitted.
+Pileup electrons: 1
+Using v3 geometry
+lhe file = /home/pet00831/Projects/LDMX/SignalMC/8GeV/SLAC.8GeV.W.mchi.0.025.map.0.075.alpha0.1.scalarDM_unweighted_events.lhe
+Doing 1000 events per job.
+Number of jobs: 1000
+Electron beam energy: 4000 MeV
+Pileup electrons: 1
+Using v3 geometry
+lhe file = /home/pet00831/Projects/LDMX/SignalMC/8GeV/SLAC.8GeV.W.mchi.0.025.map.0.075.alpha0.1.scalarDM_unweighted_events.lhe
+Doing 1000 events per job.
+Number of jobs: 1000
+Electron beam energy: 8000 MeV
+smearBeam: on
+Beam size: 15 by 35
+Photonuclear and Electronuclear processes enabled.
+Submitting at low priority (nice).
+Gamma -> mu mu process enabled in ldmx-sw/SimApplication/src/GammaPhysics.cxx
+Total number of events: 1M
+Output: /local/cms/user/pet00831/LDMX/simulation/1s_75MeV_1b_8GeV_v3_1M_events_smearBeam_inclusive_withGammaMumu_2018_5_24
+Submission setup completed.
+Job(s) submitted.
+
+
+Pileup electrons: 0
+Using v3 geometry
+lhe directory = /home/pet00831/Projects/LDMX/SignalMC/4GeV_nodecay/0.001GeV_lhe/
+Doing 1000 events per job.
+Number of jobs: 1000
+
+Pileup electrons: 0
+Using v3 geometry
+lhe directory = /home/pet00831/Projects/LDMX/SignalMC/4GeV_nodecay/0.001GeV_lhe/
+Doing 1000 events per job.
+Number of jobs: 1000
+
+Pileup electrons: 0
+Using v3 geometry
+lhe directory = /home/pet00831/Projects/LDMX/SignalMC/4GeV_nodecay/0.001GeV_lhe/
+Doing 1000 events per job.
+Number of jobs: 1000
+
+Pileup electrons: 0
+Using v3 geometry
+lhe directory = /home/pet00831/Projects/LDMX/SignalMC/4GeV_nodecay/0.001GeV_lhe/
+Doing 1000 events per job.
+Number of jobs: 1000
+Electron beam energy: 4GeV
+smearBeam: off
+Photonuclear and Electronuclear processes enabled.
+Submitting at high priority (no nice).
+Gamma -> mu mu process enabled in ldmx-sw/SimApplication/src/GammaPhysics.cxx
+Total number of events: 1M
+Output: /local/cms/user/pet00831/LDMX/simulation/1s_1MeV_0b_4GeV_v3_1M_events_inclusive_withGammaMumu_2018_5_24
+Submission setup completed.
+Job(s) submitted.
+
+
+Pileup electrons: 2
+Using v3 geometry
+lhe file = /home/pet00831/Projects/LDMX/SignalMC/8GeV/SLAC.8GeV.W.mchi.0.025.map.0.075.alpha0.1.scalarDM_unweighted_events.lhe
+Doing 1000 events per job.
+Number of jobs: 1000
+Electron beam energy: 8GeV
+smearBeam: on
+Beam size: 15 by 35
+Photonuclear and Electronuclear processes enabled.
+Submitting at low priority (nice).
+Gamma -> mu mu process enabled in ldmx-sw/SimApplication/src/GammaPhysics.cxx
+Total number of events: 1M
+Output: /local/cms/user/pet00831/LDMX/simulation/1s_75MeV_2b_8GeV_v3_1M_events_smearBeam_inclusive_withGammaMumu_2018_5_25
+Submission setup completed.
+Job(s) submitted.
+
+
+Pileup electrons: 3
+Using v3 geometry
+lhe file = /home/pet00831/Projects/LDMX/SignalMC/8GeV/SLAC.8GeV.W.mchi.0.025.map.0.075.alpha0.1.scalarDM_unweighted_events.lhe
+Doing 1000 events per job.
+Number of jobs: 1000
+Electron beam energy: 8GeV
+smearBeam: on
+Beam size: 15 by 35
+Photonuclear and Electronuclear processes enabled.
+Submitting at low priority (nice).
+Gamma -> mu mu process enabled in ldmx-sw/SimApplication/src/GammaPhysics.cxx
+Total number of events: 1M
+Output: /local/cms/user/pet00831/LDMX/simulation/1s_75MeV_3b_8GeV_v3_1M_events_smearBeam_inclusive_withGammaMumu_2018_5_25
+Submission setup completed.
+Job(s) submitted.
+
+
+Pileup electrons: 4
+Using v3 geometry
+lhe file = /home/pet00831/Projects/LDMX/SignalMC/8GeV/SLAC.8GeV.W.mchi.0.025.map.0.075.alpha0.1.scalarDM_unweighted_events.lhe
+Doing 1000 events per job.
+Number of jobs: 1000
+Electron beam energy: 8GeV
+smearBeam: on
+Beam size: 15 by 35
+Photonuclear and Electronuclear processes enabled.
+Submitting at low priority (nice).
+Gamma -> mu mu process enabled in ldmx-sw/SimApplication/src/GammaPhysics.cxx
+Total number of events: 1M
+Output: /local/cms/user/pet00831/LDMX/simulation/1s_75MeV_4b_8GeV_v3_1M_events_smearBeam_inclusive_withGammaMumu_2018_5_29
+Submission setup completed.
+Job(s) submitted.
+
+
+Pileup electrons: 2
+Using v3 geometry
+Doing 1000 events per job.
+Number of jobs: 1000
+
+Pileup electrons: 2
+Using v3 geometry
+Doing 1000 events per job.
+Number of jobs: 1000
+
+Pileup electrons: 2
+Using v3 geometry
+Doing 1000 events per job.
+Number of jobs: 1000
+
+Pileup electrons: 2
+Using v3 geometry
+Doing 1000 events per job.
+Number of jobs: 1000
+
+Pileup electrons: 2
+Using v3 geometry
+Doing 1000 events per job.
+Number of jobs: 1000
+
+Pileup electrons: 2
+Using v3 geometry
+Doing 1000 events per job.
+Number of jobs: 1000
+Electron beam energy: 8GeV
+smearBeam: on
+Beam size: 15 by 35
+Photonuclear and Electronuclear processes enabled.
+Submitting at low priority (nice).
+
+Pileup electrons: 2
+Using v3 geometry
+Doing 1000 events per job.
+Number of jobs: 1000
+Electron beam energy: 8GeV
+smearBeam: on
+Beam size: 15 by 35
+Photonuclear and Electronuclear processes enabled.
+Submitting at low priority (nice).
+Gamma -> mu mu process enabled in ldmx-sw/SimApplication/src/GammaPhysics.cxx
+Total number of events: 1M
+Output: /local/cms/user/pet00831/LDMX/simulation/0s_3b_8GeV_v3_1M_events_smearBeam_inclusive_withGammaMumu_2018_5_29
+Submission setup completed.
+Job(s) submitted.
+
+
+Pileup electrons: 0
+Using v3 geometry
+lhe directory = /home/pet00831/Projects/LDMX/SignalMC/4GeV_nodecay/0.001GeV_lhe/
+Doing 1000 events per job.
+Number of jobs: 1000
+Electron beam energy: 4GeV
+smearBeam: off
+Photonuclear and Electronuclear processes enabled.
+Submitting at high priority (no nice).
+Gamma -> mu mu process enabled in ldmx-sw/SimApplication/src/GammaPhysics.cxx
+Total number of events: 1M
+Output: /local/cms/user/pet00831/LDMX/simulation/1s_1MeV_0b_4GeV_v3_1M_events_inclusive_withGammaMumu_2018_5_30
+Submission setup completed.
+Job(s) submitted.
+
+
+Pileup electrons: 2
+Using v3 geometry
+Doing 1000 events per job.
+Number of jobs: 1000
+Electron beam energy: 8GeV
+smearBeam: on
+Beam size: 15 by 35
+Photonuclear and Electronuclear processes enabled.
+Submitting at high priority (no nice).
+Gamma -> mu mu process enabled in ldmx-sw/SimApplication/src/GammaPhysics.cxx
+Total number of events: 1M
+Output: /local/cms/user/pet00831/LDMX/simulation/0s_3b_8GeV_v3_1M_events_smearBeam_inclusive_withGammaMumu_2018_5_31
+Submission setup completed.
+Job(s) submitted.
+
+
+Pileup electrons: 2
+Using v3 geometry
+Doing 1000 events per job.
+Number of jobs: 1000
+Electron beam energy: 8GeV
+smearBeam: on
+Beam size: 15 by 35
+Photonuclear and Electronuclear processes enabled.
+Submitting at high priority (no nice).
+Gamma -> mu mu process enabled in ldmx-sw/SimApplication/src/GammaPhysics.cxx
+Total number of events: 1M
+Output: /local/cms/user/pet00831/LDMX/simulation/0s_3b_8GeV_v3_1M_events_smearBeam_inclusive_withGammaMumu_2018_6_4
+Submission setup completed.
+Job(s) submitted.
+
