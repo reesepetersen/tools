@@ -29,7 +29,7 @@ parser.add_argument("--nonice"    , dest="nonice"    , help="Do not run this at 
 arg = parser.parse_args()
 
 workingDir = "/export/scratch/users/%s"%(os.environ['USER'])
-
+print "workingDir: "+workingDir
 # create a submission log if one doesn't already exist
 submit_log = open("Condor_Submit_Log.txt","a+")
 submit_log.write("\n")
@@ -207,26 +207,26 @@ syear = "_"+str(now.year)
 smonth = "_"+str(now.month)
 sday = "_"+str(now.day)
 
-if arg.numEvents*arg.numJobs == 10:
+if arg.numEvents*numJobs == 10:
   totalEvents = "_10"
-elif arg.numEvents*arg.numJobs == 100:
+elif arg.numEvents*numJobs == 100:
   totalEvents = "_100"
-elif arg.numEvents*arg.numJobs == 1000:
+elif arg.numEvents*numJobs == 1000:
   totalEvents = "_1k"
-elif arg.numEvents*arg.numJobs == 10000:
+elif arg.numEvents*numJobs == 10000:
   totalEvents = "_10k"
-elif arg.numEvents*arg.numJobs == 100000:
+elif arg.numEvents*numJobs == 100000:
   totalEvents = "_100k"
-elif arg.numEvents*arg.numJobs == 1000000:
+elif arg.numEvents*numJobs == 1000000:
   totalEvents = "_1M"
-elif arg.numEvents*arg.numJobs == 10000000:
+elif arg.numEvents*numJobs == 10000000:
   totalEvents = "_10M"
-elif arg.numEvents*arg.numJobs == 100000000:
+elif arg.numEvents*numJobs == 100000000:
   totalEvents = "_100M"
-elif arg.numEvents*arg.numJobs == 1000000000:
+elif arg.numEvents*numJobs == 1000000000:
   totalEvents = "_1B"
 else:
-  totalEvents = "_"+str(arg.numEvents*arg.numJobs)
+  totalEvents = "_"+str(arg.numEvents*numJobs)
 print "Total number of events: {0}".format(totalEvents[1:])
 submit_log.write("Total number of events: {0}\n".format(totalEvents[1:]))
 
@@ -255,12 +255,10 @@ os.makedirs(macDir)
 
 # Write .sh script to be run by Condor
 scriptFile = open("%s/runJob.sh"%(condorDir), "w")
+scriptFileName=scriptFile.name
 scriptFile.write("#!/bin/bash\n\n")
 scriptFile.write("STUBNAME=$1\n")
 scriptFile.write("OUTPATH=$2\n")
-
-# write the runJob.sh script
-scriptFileName=scriptFile.name
 scriptFile.write("mkdir -p %s;cd %s\nmkdir ${STUBNAME}\ncd ${STUBNAME}\n"%(workingDir,workingDir))
 scriptFile.write("hostname > ${STUBNAME}.log\n")
 scriptFile.write("source ${HOME}/bin/ldmx-sw_setup.sh >> ${STUBNAME}.log 2>>${STUBNAME}.err\n")
@@ -282,6 +280,9 @@ condorSubmit.write("Universe            =  vanilla\n")
 condorSubmit.write("Requirements        =  Arch==\"X86_64\"  &&  (Machine  !=  \"scorpion6.spa.umn.edu\")  &&  (Machine  !=  \"zebra02.spa.umn.edu\")  &&  (Machine  !=  \"zebra03.spa.umn.edu\")  &&  (Machine  !=  \"zebra04.spa.umn.edu\")\n")
 condorSubmit.write("+CondorGroup        =  \"cmsfarm\"\n")
 condorSubmit.write("getenv              =  True\n")
+condorSubmit.write("log                 =  %s.log\n"%(outputName))
+condorSubmit.write("output              =  %s.out\n"%(outputName))
+condorSubmit.write("error               =  %s.err\n"%(outputName))
 if not (arg.nonice):
     condorSubmit.write("nice_user = True\n")
 condorSubmit.write("Request_Memory      =  1 Gb\n")

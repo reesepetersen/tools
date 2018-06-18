@@ -14,7 +14,8 @@ random.seed()
 
 usage = "usage: %prog [options]"
 parser = argparse.ArgumentParser(usage)
-parser.add_argument("--endLayer"  , dest="endLayer"    , help="last layer of layer sum"       , default=20, type=int)
+parser.add_argument("--python_analyzer",dest="python_analyzer",help="the python script which runs your analysis",required=True)
+parser.add_argument("--endLayer", dest="endLayer"    , help="last layer of layer sum"       , default=20, type=int)
 parser.add_argument("--inputDir"  , dest="inputDir"    , help="directory containing files"    , required=True)
 parser.add_argument("--mode"      , dest="mode"        , help="trigger mode"                  , default=0, type=int)
 parser.add_argument("--noLogging" , dest="noLogging"   , help="disable logging capabilities"  , default=False, action="store_true")

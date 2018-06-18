@@ -61,7 +61,7 @@ def resubmit(path,niceness):
       errFileNum=file.split("_")[-1].split(".")[0]
       flaggedErrFileNums.insert(-1,errFileNum)
   flaggedErrFileSet = set(flaggedErrFileNums)
-  print "flagged error files: {}".format(flaggedErrFileNums)
+  print "flagged error files: {0}".format(flaggedErrFileNums)
 
   # look through the mac files, compare to the root files, and mark the missing root file numbers
   macDir=jobDir+"mac/"
@@ -84,7 +84,7 @@ def resubmit(path,niceness):
   else:
     missingRootFileNums = []
     missingRootFileSet = set(missingRootFileNums)
-  print "missing root files: {}".format(missingRootFileNums)
+  print "missing root files: {0}".format(missingRootFileNums)
 
   # if there are no jobs to redo, quit
   if not missingRootFileSet and not flaggedErrFileSet:
