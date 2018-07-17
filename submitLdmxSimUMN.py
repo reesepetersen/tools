@@ -11,25 +11,28 @@ import datetime
 
 random.seed()
 
+geometry_d = "v3"
+beamspot_dx_d = 15
+beamspot_dy_d = 35
+
 usage = "usage: %prog [options]"
 parser = argparse.ArgumentParser(usage)
 parser.add_argument("--doPileup"  , dest="doPileup"  , help="Inject n additional particles into event (default = 0)", default=0, type=int)
-parser.add_argument("--enablePoisson" , dest="enablePoisson" , help="Poisson distribute number of e per event (default = False)", default=False, action="store_true")
-parser.add_argument("--geometry"  , dest="geometry"  , help="specify geometry version to use (default = v3)", default="v3", type=str)
-parser.add_argument("--lhe"    , dest="lhe"    , help="directory containing lhe files or an lhe file", default="/default/")
+#parser.add_argument("--enablePoisson" , dest="enablePoisson" , help="Poisson distribute number of e per event (default = False)", default=False, action="store_true")
+parser.add_argument("--geometry"  , dest="geometry"  , help="specify geometry version to use (default = %s)"%(geometry_d), default=geometry_d, type=str)
+parser.add_argument("--lhe"       , dest="lhe"    , help="directory containing lhe files or an lhe file", default="/default/")
 parser.add_argument("--noLogging" , dest="noLogging" , help="disable logging capabilities (default enabled)", default=False, action="store_true")
 parser.add_argument("--noSubmit"  , dest="noSubmit"  , help="do not submit to cluster", default=False, action="store_true")
 parser.add_argument("--numEvents" , dest="numEvents" , help="number of events per job (required)", required=True, type=int)
 parser.add_argument("--numJobs"   , dest="numJobs"   , help="number of jobs to run"   , default=-1, type=int)
-parser.add_argument("--energy"   , dest="energy"   , help="electron energy in MeV (default = 4000 MeV)", default=4000, type=int)
-parser.add_argument("--tag"   , dest="tag"   , help="tag to identify this job", default="")
-parser.add_argument("--smearBeam" , dest="smearBeam" , help="smear the beamspot (default off)", action="store_true")
-parser.add_argument("--noPN"      , dest="noPN"      , help="disable the photonNuclear, electronNulcear, and positronNuclear processes (default enabled)", action="store_true")
+parser.add_argument("--energy"    , dest="energy"   , help="electron energy in MeV (default = 4000 MeV)", default=4000, type=int)
+parser.add_argument("--tag"       , dest="tag"   , help="tag to identify this job", default="")
+parser.add_argument("--smearBeam" , dest="smearBeam" , help="smear the beamspot (default ({0}x{1}) off)".format(beamspot_dx_d,beamspot_dy_d), action="store_true")
+parser.add_argument("--noPN"      , dest="noPN"      , help="disable the photonNuclear, electronNulcear, and positronNuclear processes (default enabled)", default = False, action="store_true")
 parser.add_argument("--nonice"    , dest="nonice"    , help="Do not run this at nice priority (default nice)", action="store_true")
 arg = parser.parse_args()
 
 workingDir = "/export/scratch/users/%s"%(os.environ['USER'])
-print "workingDir: "+workingDir
 # create a submission log if one doesn't already exist
 submit_log = open("Condor_Submit_Log.txt","a+")
 submit_log.write("\n")
@@ -44,10 +47,10 @@ else:
   print "Pileup electrons: %d"%(arg.doPileup)
   submit_log.write("Pileup electrons: %d\n"%(arg.doPileup))
 
-# enablePoisson:
-if arg.enablePoisson: 
-  print "Number of electrons is Poisson distributed"
-  submit_log.write("Number of electrons is Poisson distributed\n")
+## enablePoisson:
+#if arg.enablePoisson: 
+#  print "Number of electrons is Poisson distributed"
+#  submit_log.write("Number of electrons is Poisson distributed\n")
 
 # geometry:
 print "Using %s geometry"%(arg.geometry)
@@ -155,12 +158,14 @@ else:
   Tag = ""
 
 # smearBeam:
+beam_dx = beamspot_dx_d
+beam_dy = beamspot_dy_d
 if arg.smearBeam:
-  smear = "_smearBeam"
+  smear = "_beamspot{0}x{1}".format(beam_dx,beam_dy)
   print "smearBeam: on"
   submit_log.write("smearBeam: on\n")
-  print "Beam size: 15 by 35"
-  submit_log.write("Beam size: 15 by 35\n")
+  print "Beam size: {0} by {1}".format(beam_dx,beam_dy)
+  submit_log.write("Beam size: {0} by {1}\n".format(beam_dx,beam_dy))
 else:
   smear = ""
   print "smearBeam: off"
@@ -185,7 +190,7 @@ else:
   submit_log.write("Submitting at low priority (nice).\n")
 
 # check whether the muon conversion physics process is enabled
-physics_file = open("/home/{0}/Projects/LDMX/ldmx-sw/SimApplication/src/GammaPhysics.cxx".format(os.environ['USER']),"r")
+physics_file = open("/home/{0}/LDMX/ldmx-sw/SimApplication/src/GammaPhysics.cxx".format(os.environ['USER']),"r")
 lines = physics_file.readlines()
 line_check = -1
 for line in lines:
@@ -280,9 +285,6 @@ condorSubmit.write("Universe            =  vanilla\n")
 condorSubmit.write("Requirements        =  Arch==\"X86_64\"  &&  (Machine  !=  \"scorpion6.spa.umn.edu\")  &&  (Machine  !=  \"zebra02.spa.umn.edu\")  &&  (Machine  !=  \"zebra03.spa.umn.edu\")  &&  (Machine  !=  \"zebra04.spa.umn.edu\")\n")
 condorSubmit.write("+CondorGroup        =  \"cmsfarm\"\n")
 condorSubmit.write("getenv              =  True\n")
-condorSubmit.write("log                 =  %s.log\n"%(outputName))
-condorSubmit.write("output              =  %s.out\n"%(outputName))
-condorSubmit.write("error               =  %s.err\n"%(outputName))
 if not (arg.nonice):
     condorSubmit.write("nice_user = True\n")
 condorSubmit.write("Request_Memory      =  1 Gb\n")
@@ -308,13 +310,13 @@ for job in range(numJobs):
         print "arg.lhe: {0}\n".format(arg.lhe)
     if arg.smearBeam:
         g4Macro.write("/ldmx/generators/beamspot/enable\n")
-        g4Macro.write("/ldmx/generators/beamspot/sizeX 15.0\n")
-        g4Macro.write("/ldmx/generators/beamspot/sizeY 35.0\n\n")
+        g4Macro.write("/ldmx/generators/beamspot/sizeX {0}\n".format(float(beam_dx)))
+        g4Macro.write("/ldmx/generators/beamspot/sizeY {0}\n\n".format(float(beam_dy)))
 
     if arg.doPileup > 0 or not have_lhe:
         g4Macro.write("\n/ldmx/generators/mpgun/enable\n")
-        if arg.enablePoisson:
-            g4Macro.write("/ldmx/generators/mpgun/enablePoisson\n\n")
+        #if arg.enablePoisson:
+        #    g4Macro.write("/ldmx/generators/mpgun/enablePoisson\n\n")
 
 	g4Macro.write("/ldmx/generators/mpgun/nInteractions %s\n"%(arg.doPileup+1))
         g4Macro.write("/ldmx/generators/mpgun/pdgID 11\n")

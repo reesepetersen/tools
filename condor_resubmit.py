@@ -6,6 +6,7 @@ import sys
 import argparse
 import re
 import subprocess
+import random
 
 # taking an argument from the command line
 parser = argparse.ArgumentParser(description = 'Designed for failed condor jobs, due to a certain gdml file being unavailable from CERN or if a scorpion ate a job.\nIt reads through the mac files, extracts their job numbers, then copies the appropriate lines from the condorSubmit file and resubmits to condor for all files not appearing in the output directory, as well as those with larger than average (>120) err file size.')
@@ -13,6 +14,7 @@ parser.add_argument('jobdir', help='Give the full path where some condor jobs fa
 parser.add_argument("--noNice"  , dest="noNice"  , help="do not run at nice priority, regardless of the original job priority", action="store_true")
 parser.add_argument("--nice"  , dest="nice"  , help="run at nice priority, regardless of the original job priority", action="store_true")
 parser.add_argument("--doAll"  , dest="doAll"  , help="check and resubmit if needed for all jobs in /local/cms/user/%s/LDMX/"%(os.environ["USER"]), action="store_true")
+parser.add_argument("--noSubmit"  , dest="noSubmit"  , help="do not submit", action="store_true")
 
 arg = parser.parse_args()
 
@@ -167,12 +169,16 @@ def resubmit(path,niceness):
     redoLine = " ".join(redo_space_split)
     resubmitFile.write(redoLine)
     resubmitFile.write("Queue\n")
+#    mac_file = open(macDir+job_name+"_%s.mac"%(redo_number))
+#    for line in mac_file:
+#      if len(line.split('random')) > 1:
   resubmitFile.close()
   condorFile.close()
-
-  # submit to condor
-  command = "condor_submit " + resubmitFile.name + "\n"
-  subprocess.call(command.split())
+  # reseed the mac files, just for good measure, because it gets around a certain error when using v2
+  if not arg.noSubmit:
+    # submit to condor
+    command = "condor_submit " + resubmitFile.name + "\n"
+    subprocess.call(command.split())
 
 if arg.jobdir != "all":
   if arg.nice:
